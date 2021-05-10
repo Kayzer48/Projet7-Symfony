@@ -20,8 +20,8 @@ final class Version20210510073313 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE utilisateurs ADD email VARCHAR(180) NOT NULL, ADD roles JSON NOT NULL, ADD password VARCHAR(255) NOT NULL, DROP user_username, DROP user_password, DROP user_email, DROP user_adresse, DROP user_nom, DROP user_prenom, DROP user_roles');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_497B315EE7927C74 ON utilisateurs (email)');
+        $this->addSql('ALTER TABLE utilisateurs ADD email VARCHAR(180) NOT NULL, ADD roles JSON NOT NULL, ADD password VARCHAR(255) NOT NULL');
+
     }
 
     public function down(Schema $schema): void
