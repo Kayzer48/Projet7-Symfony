@@ -2,162 +2,118 @@
 
 namespace App\Entity;
 
+use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Utilisateurs
- *
- * @ORM\Table(name="utilisateurs")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Utilisateurs
+class Utilisateurs implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="user_username", type="text", length=0, nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $userUsername;
+    private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="user_password", type="text", length=0, nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $userPassword;
+    private $roles = [];
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="user_email", type="text", length=0, nullable=false)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $userEmail;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="user_adresse", type="text", length=0, nullable=false)
-     */
-    private $userAdresse;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="user_nom", type="text", length=0, nullable=false)
-     */
-    private $userNom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="user_prenom", type="text", length=0, nullable=false)
-     */
-    private $userPrenom;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="user_roles", type="array", length=0, nullable=false)
-     */
-    private $userRoles;
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUserUsername(): ?string
+    public function getEmail(): ?string
     {
-        return $this->userUsername;
+        return $this->email;
     }
 
-    public function setUserUsername(string $userUsername): self
+    public function setEmail(string $email): self
     {
-        $this->userUsername = $userUsername;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getUserPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->userPassword;
+        return (string) $this->email;
     }
 
-    public function setUserPassword(string $userPassword): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->userPassword = $userPassword;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = "ROLE_USER";
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getUserEmail(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->userEmail;
+        return $this->password;
     }
 
-    public function setUserEmail(string $userEmail): self
+    public function setPassword(string $password): self
     {
-        $this->userEmail = $userEmail;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getUserAdresse(): ?string
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
     {
-        return $this->userAdresse;
+        return null;
     }
 
-    public function setUserAdresse(string $userAdresse): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->userAdresse = $userAdresse;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
-
-    public function getUserNom(): ?string
-    {
-        return $this->userNom;
-    }
-
-    public function setUserNom(string $userNom): self
-    {
-        $this->userNom = $userNom;
-
-        return $this;
-    }
-
-    public function getUserPrenom(): ?string
-    {
-        return $this->userPrenom;
-    }
-
-    public function setUserPrenom(string $userPrenom): self
-    {
-        $this->userPrenom = $userPrenom;
-
-        return $this;
-    }
-
-    public function getUserRoles(): ?array
-    {
-        return $this->userRoles;
-    }
-
-    public function setUserRoles(array $userRoles): self
-    {
-        $this->userRoles = $userRoles;
-
-        return $this;
-    }
-
-
 }
