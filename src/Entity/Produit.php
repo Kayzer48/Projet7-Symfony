@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produit
@@ -25,35 +26,36 @@ class Produit
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="prod_nom", type="text", length=0, nullable=false)
      */
     private $prodNom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="prod_description", type="text", length=0, nullable=false)
      */
     private $prodDescription;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="prod_quantite_stock", type="integer", nullable=false)
      */
     private $prodQuantiteStock;
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="prod_prix", type="float", precision=10, scale=0, nullable=false)
      */
     private $prodPrix;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type("\DateTime")
      * @ORM\Column(name="deposit_date", type="date", nullable=false)
      */
     private $depositDate;
