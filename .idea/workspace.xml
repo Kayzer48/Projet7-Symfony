@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e328ae60-c338-4989-989e-969342a92f21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210510073313.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210510073313.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProduitCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProduitCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UtilisateursCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UtilisateursCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CategorieProduit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategorieProduit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/ModePaiement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/ModePaiement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Panier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Panier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Produit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateurs.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateurs.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,6 +125,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -131,7 +137,8 @@
       <option name="presentableId" value="Default" />
       <updated>1620631098049</updated>
       <workItem from="1620631100573" duration="2208000" />
-      <workItem from="1620646256757" duration="880000" />
+      <workItem from="1620646256757" duration="11482000" />
+      <workItem from="1620715417188" duration="1498000" />
     </task>
     <servers />
   </component>

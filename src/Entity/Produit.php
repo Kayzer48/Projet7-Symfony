@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,6 +64,29 @@ class Produit
      * @ORM\Column(name="prod_image", type="text", length=0, nullable=true)
      */
     private $prodImage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $produit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CategorieProduit::class, inversedBy="produits")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Commande::class, mappedBy="produit")
+     */
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -140,5 +165,55 @@ class Produit
         return $this;
     }
 
+    public function getProduit(): ?Utilisateurs
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Utilisateurs $produit): self
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getCategory(): ?CategorieProduit
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?CategorieProduit $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeProduit($this);
+        }
+
+        return $this;
+    }
 
 }

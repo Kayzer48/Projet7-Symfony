@@ -28,6 +28,11 @@ class ModePaiement
      */
     private $paiementLibelle;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Commande::class, cascade={"persist", "remove"})
+     */
+    private $commande;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +46,18 @@ class ModePaiement
     public function setPaiementLibelle(string $paiementLibelle): self
     {
         $this->paiementLibelle = $paiementLibelle;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
 
         return $this;
     }

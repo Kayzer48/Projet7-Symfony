@@ -20,7 +20,7 @@ class UtilisateursCrudController extends AbstractCrudController
     {
         return [
             IntegerField::new("id",'ID')->onlyOnIndex(),
-            //TextField::new('user_username','Pseudo'),
+            TextField::new('pseudo','Pseudo'),
             ChoiceField::new('roles', 'Roles')
                 ->allowMultipleChoices(true)
                 ->autocomplete()

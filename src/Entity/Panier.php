@@ -28,6 +28,11 @@ class Panier
      */
     private $clientId;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Client::class, cascade={"persist", "remove"})
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +46,18 @@ class Panier
     public function setClientId(?int $clientId): self
     {
         $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
