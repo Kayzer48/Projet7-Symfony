@@ -42,6 +42,11 @@ class Commande
      */
     private $produit;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="commandes")
+     */
+    private $client;
+
     public function __construct()
     {
         $this->produit = new ArrayCollection();
@@ -96,6 +101,18 @@ class Commande
     public function removeProduit(Produit $produit): self
     {
         $this->produit->removeElement($produit);
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
